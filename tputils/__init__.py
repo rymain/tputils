@@ -1,1 +1,1 @@
-from tputils import *
+from tputils.tputils import *
