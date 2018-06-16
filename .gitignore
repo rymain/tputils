@@ -1,0 +1,10 @@
+__pycache__
+.idea
+*.pyc
+.pytest_cache/
+.cache/
+
+js_bte.egg-info/
+notebooks/.ipynb_checkpoints/
+
+
