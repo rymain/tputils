@@ -20,7 +20,7 @@ install_reqs = parse_requirements("requirements.txt", session=PipSession())
 reqs = [str(ir.req) for ir in install_reqs]
 
 setup(
-    name='tpustils',
+    name='tputils',
     version='0.1',
     description='Utils that makes coding easier.',
     author='Tomáš Přinda',
