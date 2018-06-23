@@ -1,6 +1,7 @@
 import codecs
 import os
 import pickle
+import re
 
 import numpy as np
 
@@ -111,3 +112,8 @@ def strip_extension(filename):
 def extension(filename):
     arr = filename.split(".")
     return arr[-1]
+
+
+def tokenize(s):
+    return list(filter(None, re.split("[,._ \-!?:\(\)|@/=]+", s)))
+
