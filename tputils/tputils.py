@@ -117,3 +117,16 @@ def extension(filename):
 def tokenize(s):
     return list(filter(None, re.split("[,._ \-!?:\(\)|@/=]+", s)))
 
+
+def dir_path(file):
+    """
+    Get the path to a dir where file is located.
+    Use der_path(__file__) to get dir where source file is located.
+    :param str file:
+    :return:
+    """
+    return os.path.dirname(os.path.abspath(file))
+
+
+def undefaultdict(d):
+    return {k: v for k, v in d.items()}
