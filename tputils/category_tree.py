@@ -55,7 +55,19 @@ class CategoryTree:
 
         return max(len(path1_common), len(path2_common))
 
-    def iter(self, only_leafs, node=None):
+    def iter(self, only_leafs, node=None, only_ids=False):
+        """
+        Iterates over all categories.
+        :param bool only_leafs: Iterates only over leafs
+        :param (None|Category) node: Node from which to start
+        :param bool only_ids: If True return only ids, otherwise Categories
+        :return:
+        """
+        if only_ids:
+            for cat in self.iter(only_leafs, node, only_ids=False):
+                yield cat.cat_id
+            return
+
         if node is None:
             node = self.root
 

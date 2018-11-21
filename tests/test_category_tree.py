@@ -63,11 +63,15 @@ id,parent_id,is_leaf,name
 
     def test_iter(self):
         expected = {17425, 144271, 144276, 144274, 8532, 8487, 17137, 8482}
-        cat_ids = {cat.cat_id for cat in self.tree.iter(only_leafs=False)}
+        cat_ids = {cat.cat_id for cat in self.tree.iter(only_leafs=False, only_ids=False)}
+        self.assertSetEqual(cat_ids, expected)
+        cat_ids = set(self.tree.iter(only_leafs=False, only_ids=True))
         self.assertSetEqual(cat_ids, expected)
 
         expected = {144276, 144274, 17137, 8482}
-        cat_ids = {cat.cat_id for cat in self.tree.iter(only_leafs=True)}
+        cat_ids = {cat.cat_id for cat in self.tree.iter(only_leafs=True, only_ids=False)}
+        self.assertSetEqual(cat_ids, expected)
+        cat_ids = set(self.tree.iter(only_leafs=True, only_ids=True))
         self.assertSetEqual(cat_ids, expected)
 
     def test_get_newick(self):
