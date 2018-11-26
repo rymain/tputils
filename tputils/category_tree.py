@@ -46,6 +46,9 @@ class CategoryTree:
         path_ids = self.get_path_ids(cat_id)
         return [self.nodes[cat_id].name for cat_id in path_ids]
 
+    def get_path_str(self, cat_id):
+        return " > ".join(self.get_path_names(cat_id))
+
     def get_cat_distance(self, cat_id1, cat_id2):
         path1 = self.get_path_ids(cat_id1)
         path2 = self.get_path_ids(cat_id2)

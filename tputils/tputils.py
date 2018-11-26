@@ -4,6 +4,7 @@ import pickle
 import random
 import re
 import string
+import time
 
 import numpy as np
 
@@ -134,7 +135,6 @@ def undefaultdict(d):
     return {k: v for k, v in d.items()}
 
 
-
 VOWELS = "aeiou"
 CONSONANTS = "".join(set(string.ascii_lowercase) - set(VOWELS))
 
@@ -147,3 +147,14 @@ def generate_word(length):
         else:
             word += random.choice(VOWELS)
     return word
+
+
+class Timer:
+
+    def __enter__(self):
+        self.start = time.time()
+        return self
+
+    def __exit__(self, *args):
+        self.end = time.time()
+        self.duration = self.end - self.start
