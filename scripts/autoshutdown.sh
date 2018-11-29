@@ -3,8 +3,10 @@
 CHECK_TIME=300		# Check cpu load every CHECK_TIME [s]
 CPU_THRESHOLD=0.02	# Average CPU threshold [%] 
 
-# Run the script in /etc/rc.local (before last line `exit 0` to 
-# run it on startup
+# Run the script in /etc/rc.local 
+# (before last line `exit 0` to run it on startup) with training & to run in backgroud
+# `absolute_path_dir/autoshutdown.sh &`
+#
 # If  /etc/rc.local doesn't exists  (Ubuntu 18.04) use
 # > printf '%s\n' '#!/bin/bash' 'exit 0' | sudo tee -a /etc/rc.local
 # > sudo chmod +x /etc/rc.local
