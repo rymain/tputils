@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CHECK_TIME=300		# Check cpu load every CHECK_TIME [s]
-CPU_THRESHOLD=0.02	# Average CPU threshold [%] 
+CPU_THRESHOLD=0.1	# Average CPU threshold [%] 
 
 # Run the script in /etc/rc.local 
 # (before last line `exit 0` to run it on startup) with training & to run in backgroud
