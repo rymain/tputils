@@ -40,14 +40,18 @@ def csv_dump(rows, filename, append=False, delimiter=";"):
         writer.writerows(rows)
 
 
-def csv_load(filename, delimiter=";", n=-1):
+def csv_load(filename, delimiter=";", n=-1, skip_header=False):
     import csv
     rows = []
     with open(filename, "r") as csvfile:
         reader = csv.reader(csvfile, delimiter=delimiter, quotechar=str('"'), quoting=csv.QUOTE_MINIMAL)
+
+        if skip_header:
+            next(reader)
+
         for row in reader:
 
-            if 0 <= n < len(rows):
+            if 0 <= n <= len(rows):
                 break
 
             rows.append(row)
