@@ -8,7 +8,7 @@ CPU_THRESHOLD=0.1	# Average CPU threshold [%]
 # `absolute_path_dir/autoshutdown.sh &`
 #
 # If  /etc/rc.local doesn't exists  (Ubuntu 18.04) use
-# > printf '%s\n' '#!/bin/bash' '/home/ubuntu/scr/tputils/scripts/autoshutdown.sh &' 'exit 0' | sudo tee -a /etc/rc.local
+# > printf '%s\n' '#!/bin/bash' '/home/ubuntu/src/tputils/scripts/autoshutdown.sh &' 'exit 0' | sudo tee -a /etc/rc.local
 # > sudo chmod +x /etc/rc.local
 # > sudo reboot
 
