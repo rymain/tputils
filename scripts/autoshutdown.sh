@@ -19,7 +19,7 @@ if [[ $EUID > 0 ]]
   exit
 fi
 
-sleep $CHECK_TIME
+sleep 1800  # Don't shut down first 30 minutes
 while true #runs forever
 do
 	a=`cut -d ' ' -f 3 /proc/loadavg` #set a = load avg.
@@ -31,6 +31,6 @@ do
 		# echo "Working $a"
 		:
 	fi
-	sleep $CHECK_TIME #Wait and try again
+	sleep $CHECK_TIME # Wait and try again
 			
 done
