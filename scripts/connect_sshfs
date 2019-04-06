@@ -1,0 +1,19 @@
+#!/bin/bash
+MACHINE=$1
+
+EINSTEIN_URL="ubuntu@ec2-13-234-184-74.ap-south-1.compute.amazonaws.com"
+AWS_KEY="~/secret/aws/aws-key.pem"
+
+if [ "$MACHINE" == "einstein" ]; then
+	sshfs \
+    -o follow_symlinks \
+    -o transform_symlinks \
+    -o TCPKeepAlive=yes \
+    -o ServerAliveCountMax=2 \
+    -o ServerAliveInterval=5 \
+    -o IdentityFile=$AWS_KEY \
+    $EINSTEIN_URL:/home/ubuntu/  \
+    ~/einstein/
+else
+	echo "Server '$MACHINE' not known"
+fi

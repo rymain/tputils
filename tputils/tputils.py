@@ -67,9 +67,17 @@ def txt_dump(rows, filename, append=False, add_new_line=True):
         f.writelines(rows)
 
 
-def txt_load(filename):
+def txt_load(filename,  n=-1):
     with codecs.open(filename, "r", encoding="utf-8") as f:
-        return [row.strip() for row in f]
+
+        rows = []
+        for row in f:
+            rows.append(row)
+
+            if 0 <= n <= len(rows):
+                break
+
+        return rows
 
 
 def make_sure_path_exists(path):
