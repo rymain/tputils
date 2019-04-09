@@ -67,11 +67,13 @@ def txt_dump(rows, filename, append=False, add_new_line=True):
         f.writelines(rows)
 
 
-def txt_load(filename,  n=-1):
+def txt_load(filename, n=-1, strip_new_line=True):
     with codecs.open(filename, "r", encoding="utf-8") as f:
 
         rows = []
         for row in f:
+            if strip_new_line:
+                row = row.rstrip("\n")
             rows.append(row)
 
             if 0 <= n <= len(rows):
