@@ -1,13 +1,23 @@
 #!/bin/bash   
 MACHINE=$1
 
-EINSTEIN_URL="ubuntu@ec2-13-234-184-74.ap-south-1.compute.amazonaws.com"
-DAVINCI_URL="ec2-user@ec2-13-210-195-219.ap-southeast-2.compute.amazonaws.com"
+EINSTEIN_URL="ec2-13-234-184-74.ap-south-1.compute.amazonaws.com"
+DAVINCI_URL="ec2-13-210-195-219.ap-southeast-2.compute.amazonaws.com"
+CASH_URL="ec2-18-185-217-168.eu-central-1.compute.amazonaws.com"
+MERCURY_URL="ec2-3-248-17-208.eu-west-1.compute.amazonaws.com"
+COBAIN_URL="ec2-52-215-179-47.eu-west-1.compute.amazonaws.com"
+
 
 if [ "$MACHINE" == "einstein" ]; then
-	ssh -i "~/secret/aws/aws-key.pem"  $EINSTEIN_URL
+	ssh -i "~/secret/aws/aws-key.pem"  ubuntu@$EINSTEIN_URL
 elif [ "$MACHINE" == "davinci" ]; then
-	ssh -i "~/secret/aws/aws-key-ap-south-1.pem" $DAVINCI_URL
+	ssh -i "~/secret/aws/aws-key-ap-south-1.pem" ubuntu@$DAVINCI_URL
+elif [ "$MACHINE" == "cash" ]; then
+	ssh -i "~/secret/aws_cashreader/aws-frankfurt.pem" ubuntu@$CASH_URL
+elif [ "$MACHINE" == "mercury" ]; then
+	ssh -i "~/secret/aws_biano/tomas.prinda--public-key.pem" ubuntu@$MERCURY_URL
+elif [ "$MACHINE" == "cobain" ]; then
+	ssh -i "~/secret/aws_biano/tomas.prinda--public-key.pem" ubuntu@$COBAIN_URL
 else
 	echo "Server '$MACHINE' not known"
 fi

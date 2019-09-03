@@ -15,10 +15,10 @@ def json_load(filename):
         return json.load(f)
 
 
-def json_dump(d, filename):
+def json_dump(d, filename, **kwargs):
     import json
     with open(filename, "w") as f:
-        json.dump(d, f)
+        json.dump(d, f, **kwargs)
 
 
 def pickle_load(filename):
@@ -172,3 +172,16 @@ class Timer:
     def __exit__(self, *args):
         self.end = time.time()
         self.duration = self.end - self.start
+
+
+class Seed:
+    def __init__(self, seed):
+        self.seed = seed
+        self.backup = None
+
+    def __enter__(self):
+        self.backup = np.random.get_state()
+        np.random.seed(self.seed)
+
+    def __exit__(self, *_):
+        np.random.set_state(self.backup)
