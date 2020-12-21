@@ -1,33 +1,38 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-"""Script managing packaging and more."""
+import io
+import os.path
+import sys
 
-
-from setuptools import setup
-from setuptools import find_packages
-from setuptools.command.install import install
-from setuptools.command.develop import develop
-try: # for pip >= 10O
-    from pip._internal.req import parse_requirements
-    from pip._internal.download import PipSession
-except ImportError: # for pip <= 9.0.3
-    from pip.req import parse_requirements
-    from pip.download import PipSession
+from setuptools import setup, find_packages
 
 
-install_reqs = parse_requirements("requirements.txt", session=PipSession())
-reqs = [str(ir.req) for ir in install_reqs]
+def _open(fname):
+    """Read a file relatively to this setup.py."""
+    return io.open(os.path.join(os.path.dirname(__file__), fname), "rt",
+                   encoding="utf-8")
+
+
+requirements = [line.rstrip('\n') for line in _open('requirements.txt')]
+
+PY2 = sys.version_info[0] == 2
+
+if PY2:
+    packages = find_packages()
+    # separate entry_points as well?
+else:
+    packages = [
+        "numpy",
+        "pandas",
+    ]
 
 setup(
-    name='tputils',
-    version='0.1',
-    description='Utils that makes coding easier.',
-    author='Tomáš Přinda',
-    author_email='tomas.prinda@gmail.com',
-    install_requires=reqs,
-    # tohle oznaci jako modul kazdou slozku, ktera obsahuje __init__.py
-    # proto by testy nemely obsahovat __init__.py
-    packages=find_packages(),
-
+    name="tputils",
+    version="0.1",
+    url="https://github.com/rymain/tputils",
+    author="Tomáš Přinda",
+    author_email="tomas.prinda@gmail.com",
+    description="Utils that makes coding easier.",
+    packages=packages,
+    install_requires=requirements,
 )
