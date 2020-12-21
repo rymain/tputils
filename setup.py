@@ -22,8 +22,7 @@ if PY2:
     # separate entry_points as well?
 else:
     packages = [
-        "numpy",
-        "pandas",
+        "tputils",
     ]
 
 setup(
